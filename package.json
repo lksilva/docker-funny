@@ -1,0 +1,14 @@
+{
+  "name": "node-static",
+  "version": "1.0.0",
+  "description": "The first test with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Silva",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
