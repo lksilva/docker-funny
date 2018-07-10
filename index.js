@@ -1,21 +1,21 @@
-var express = require("express");
-var app     = express();
-var path    = require("path");
+var express = require('express'),
+    http = require('http'),
+    redis = require('redis');
 
+var app = express();
 
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
-  //__dirname : It will resolve to your project folder.
+console.log(process.env.REDIS_PORT_6379_TCP_ADDR + ':' + process.env.REDIS_PORT_6379_TCP_PORT);
+
+var client = redis.createClient('6379', 'redis');
+
+app.get('/', function(req, res, next) {
+  console.log('Testando load balance');
+  client.incr('counter', function(err, counter) {
+    if(err) return next(err);
+    res.send('This page has been viewed ' + counter + ' times!');
+  });
 });
 
-app.get('/about',function(req,res){
-  res.sendFile(path.join(__dirname+'/about.html'));
+http.createServer(app).listen(process.env.PORT || 8080, function() {
+  console.log('Listening on port ' + (process.env.PORT || 8080));
 });
-
-app.get('/sitemap',function(req,res){
-  res.sendFile(path.join(__dirname+'/sitemap.html'));
-});
-
-app.listen(3000);
-
-console.log("Running at Port 3000");

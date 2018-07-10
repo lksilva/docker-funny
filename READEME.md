@@ -16,3 +16,24 @@ Primeiros passos com docker
 	
 - Para listar os containers ativos 
 	> docker ps
+
+- Subir para o docker hub
+	> docker push lksilva/node
+
+- Baixar do docker hub
+	> docker pull lksilva/node
+
+
+## Conectando diferentes containers
+
+- Primeiro temos que criar uma network para atribuir alias aos container a fim de evitar amarrar o IP do container
+	> docker network create --driver bridge {nome-da-network}
+
+- Agora, ao criarmos o container devemos apontar para nossa rede
+	> docker run --name {nome-do-container} --network {nome-da-network} {nome-da-imagem}
+
+- Caso exista a necessidade de testar se deu tudo certo, basta executar o comando e verificar se seu container está atrelado ao network 
+	> docker inspect ubuntu-container
+
+
+## Usando composer
