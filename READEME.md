@@ -37,3 +37,14 @@ Primeiros passos com docker
 
 
 ## Usando composer
+
+- Primeiro devemos criar o arquivo docker-compose.yml, configurando todos os ambientes e comunicando os mesmos através dos networks.
+
+- Para criar uma imagem do docker basta executar o comando
+	> docker-compose build
+
+- Para subir a imagem
+	> docker-compose up -d
+
+- Caso seja necessário derrubar o ambiente 
+	> docker-compose down
